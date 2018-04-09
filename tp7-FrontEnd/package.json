@@ -1,5 +1,5 @@
 {
-  "name": "yo",
+  "name": "tp7frontend",
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",

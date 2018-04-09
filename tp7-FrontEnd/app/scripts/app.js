@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name yoApp
+ * @name tp7FrontEndApp
  * @description
- * # yoApp
+ * # tp7FrontEndApp
  *
  * Main module of the application.
  */
 angular
-  .module('yoApp', [
+  .module('tp7FrontEndApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

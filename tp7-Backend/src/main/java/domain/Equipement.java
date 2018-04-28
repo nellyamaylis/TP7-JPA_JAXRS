@@ -8,12 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
+@Table(name="equipement")
 public class Equipement extends IntelligentPeripherik {
   private Long idEq;
   private String nom;
   private int watts;
   Residence residence;
-  Personne pers;
+  //Personne pers;
 
   public Equipement() {
     super();
@@ -64,14 +65,14 @@ public class Equipement extends IntelligentPeripherik {
     this.residence = residence;
   }
 
-  @ManyToOne
-  public Personne getPers() {
-        return pers;
-  }
-
-  public void setPers(Personne pers) {
-        this.pers = pers;
-  }
+//  @ManyToOne
+//  public Personne getPers() {
+//        return pers;
+//  }
+//
+//  public void setPers(Personne pers) {
+//        this.pers = pers;
+//  }
 
     @Override
   public String toString() {

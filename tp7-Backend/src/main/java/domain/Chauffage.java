@@ -3,21 +3,20 @@ package domain;
 import javax.persistence.*;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-@NamedQueries({
-        @NamedQuery(
-                name = "Chauffage.findLesChauffages",
-                query = "select c from Chauffage c"
-        ),
-        @NamedQuery(
-                name = "Chauffage.findChauffageById",
-                query = "select c from Chauffage c where c.idCh = :id"
-        )
-})
+//@NamedQueries({
+//        @NamedQuery(
+//                name = "Chauffage.findLesChauffages",
+//                query = "select c from Chauffage c"
+//        ),
+//        @NamedQuery(
+//                name = "Chauffage.findChauffageById",
+//                query = "select c from Chauffage c where c.idCh = :id"
+//        )
+//})
 
 @Entity
-
 public class Chauffage extends IntelligentPeripherik {
-    Long idCh;
+    private Long idCh;
     private Residence residence;
     private String power;
 

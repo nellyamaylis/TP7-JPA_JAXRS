@@ -7,16 +7,16 @@ import java.io.Serializable;
 
  */
 @Entity
-@Inheritance
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class IntelligentPeripherik implements Serializable{
 
-  private long id;
+  private Long id;
   private String name;
   int consommation;
 
   @Id
   @GeneratedValue
-  public long getId() {
+  public Long getId() {
     return id;
   }
 

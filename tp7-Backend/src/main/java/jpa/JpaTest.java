@@ -37,8 +37,8 @@ public class JpaTest {
 		tx.commit();
 		test.listPerson();
 		test.getLesResidences();
-		test.findLesChauffages();
-		test.findChauffageById(1);
+		//test.findLesChauffages();
+		//test.findChauffageById(1);
 		//String s = "SELECT e FROM Personne as e where e.nom=:nom";
 
 
@@ -52,7 +52,7 @@ public class JpaTest {
 //		System.err.println(res.get(0).getNom());
 
 		manager.close();
-		factory.close();
+		System.out.println("Terminé !!");
 
 	}
 	public void initialisation() {
@@ -177,9 +177,9 @@ public class JpaTest {
 
     private void listPerson() {
         List<Personne> resultList = manager.createQuery("Select p From Personne p", Personne.class).getResultList();
-        System.out.println("num of person:" + resultList.size());
+        System.out.println("num of personne:" + resultList.size());
         for (Personne next : resultList) {
-            System.out.println("next person: " + next);
+            System.out.println("next personne: " + next);
         }
     }
 
@@ -199,17 +199,17 @@ public class JpaTest {
         }
     }
 
-    public void findLesChauffages() {
-        List<Chauffage> results = manager.createNamedQuery("Chauffage.findLesChauffages").getResultList();
-        for (Chauffage h : results) {
-            System.out.println("NamedQuery ---> CHAUFFAGE : " + h.getIdCh());
-        }
-    }
-
-    public void findChauffageById(int id) {
-        Object result = manager.createNamedQuery("Chauffage.findChauffageById").setParameter("id", id).getSingleResult();
-
-        System.out.println("NamedQuery ---> CHAUFFAGE POWER : " + ((Chauffage) result).getPower());
-    }
+//    public void findLesChauffages() {
+//        List<Chauffage> results = manager.createNamedQuery("Chauffage.findLesChauffages").getResultList();
+//        for (Chauffage h : results) {
+//            System.out.println("NamedQuery ---> CHAUFFAGE : " + h.getIdCh());
+//        }
+//    }
+//
+//    public void findChauffageById(int id) {
+//        Object result = manager.createNamedQuery("Chauffage.findChauffageById").setParameter("id", id).getSingleResult();
+//
+//        System.out.println("NamedQuery ---> CHAUFFAGE POWER : " + ((Chauffage) result).getPower());
+//    }
 
 }

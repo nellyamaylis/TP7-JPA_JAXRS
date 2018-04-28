@@ -10,11 +10,12 @@ import java.util.List;
 
 
 @Entity
+@Table(name="residence")
 public class Residence {
-    private long id;
+    private Long id;
     private int taille;
     private int nb_pieces;
-    Collection<Personne> proprios = new ArrayList<Personne>();
+//    Collection<Personne> proprios = new ArrayList<Personne>();
     Collection<Chauffage> chauffage = new ArrayList<Chauffage>();
     Collection<Equipement> equipements = new ArrayList<Equipement>();
 
@@ -27,9 +28,16 @@ public class Residence {
     this.taille = taille;
     this.nb_pieces = nb_pieces;
   }
+
+  public Residence(int taille, int nb_pieces, Collection<Equipement> equipements, Collection<Chauffage> chauffages){
+      this.taille = taille;
+      this.nb_pieces = nb_pieces;
+      this.equipements = equipements;
+      this.chauffage = chauffages;
+  }
     @Id
     @GeneratedValue
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -57,18 +65,17 @@ public class Residence {
     this.nb_pieces = nb_pieces;
   }
 
-    @ManyToMany(mappedBy = "residences")
-    @JsonIgnore
-    public Collection<Personne> getProprios() {
-        return proprios;
-    }
+//    @ManyToMany(mappedBy = "residences")
+//    @JsonIgnore
+//    public Collection<Personne> getProprios() {
+//        return proprios;
+//    }
 
-    public void setProprios(Collection<Personne> proprios) {
-        this.proprios = proprios;
-    }
+//    public void setProprios(Collection<Personne> proprios) {
+//        this.proprios = proprios;
+//    }
 
-    @OneToMany(mappedBy = "residence")
-    @JsonIgnore
+    @OneToMany(mappedBy = "residence", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     public Collection<Chauffage> getChauffage() {
         return chauffage;
     }
@@ -77,8 +84,7 @@ public class Residence {
         this.chauffage = chauffage;
     }
 
-    @OneToMany(mappedBy = "residence")
-    @JsonIgnore
+    @OneToMany(mappedBy = "residence", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     public Collection<Equipement> getEquipements() {
         return equipements;
     }

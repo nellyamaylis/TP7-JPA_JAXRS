@@ -11,32 +11,50 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name="personne")
 public class Personne {
 
   private String nom;
-  private long id;
+  private Long id;
   private String prenom;
   private String mail;
   Collection<Residence> residences = new ArrayList<Residence>();
-  //Collection<Personne> amis = new ArrayList<Personne>();
+  Collection<Personne> amis = new ArrayList<Personne>();
   Collection<Equipement> equipements = new ArrayList<Equipement>();
 
   public Personne() {
-        super();
+
+  }
+  public Personne(String nom, String prenom){
+      this.nom = nom;
+      this.prenom = prenom;
+  }
+
+    public Personne(String nom, String prenom, String mail){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
     }
 
+  public Personne(String nom, String prenom, String mail, Collection<Residence> residences, Collection<Personne> amis, Collection<Equipement> equipements){
+      this.nom = nom;
+      this.prenom = prenom;
+      this.mail = mail;
+      this.amis = amis;
+      this.equipements = equipements;
+      this.residences = residences;
+  }
   @Id
   @GeneratedValue
-  public long getId() {
+  public Long getId() {
 
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  @Column
   public String getNom() {
     return nom;
   }
@@ -65,8 +83,7 @@ public class Personne {
     this.mail = mail;
   }
 
-  @ManyToMany
-  @JsonIgnore
+  @OneToMany
   public Collection<Residence> getResidences() {
 
     return residences;
@@ -77,11 +94,10 @@ public class Personne {
     this.residences = residences;
   }
 
-  @OneToMany(mappedBy = "pers")
-  @JsonIgnore
+  @OneToMany
   public Collection<Equipement> getEquipements() {
 
-    return this.equipements;
+    return equipements;
   }
 
   public void setEquipements(Collection<Equipement> equipements) {
@@ -89,22 +105,19 @@ public class Personne {
     this.equipements = equipements;
   }
 
-//  @OneToMany(mappedBy = "amis")
-//  @JsonIgnore
-//  public Collection<Personne> getAmis() {
-//    return this.amis;
-//  }
-//
-//  public void setAmis(Collection<Personne> amis) {
-//    this.amis = amis;
-//  }
-
-  public Personne(String nom, String prenom, String mail) {
-    this.nom = nom;
-    this.prenom = prenom;
-    this.mail = mail;
-
+  @ManyToMany
+  public Collection<Personne> getAmis() {
+    return amis;
   }
+
+  public void setAmis(Collection<Personne> amis) {
+    this.amis = amis;
+  }
+
+    public void addAmis(Personne ami){
+        this.amis.add(ami);
+    }
+
   @Override
   public String toString() {
     return "Personne [id = " + id + ", Nom = " + nom + ", Prénom = " + prenom + ", email = " + mail + "]";
